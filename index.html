@@ -6884,6 +6884,31 @@ header.et-l--header .et_pb_menu__logo > img {
 			}
 		}
 
+		.lang-dropdown {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		z-index: 9999;
+		}
+
+		.lang-dropdown .selected {
+		cursor: pointer;
+		}
+
+		.lang-dropdown .options {
+		display: none;
+		margin-top: 5px;
+		background: white;
+		padding: 5px;
+		border-radius: 5px;
+		}
+
+		.lang-dropdown .options img {
+		display: block;
+		cursor: pointer;
+		margin: 5px 0;
+		}
+
 		/*wp_block_styles_on_demand_placeholder:699c04d6e4089*/
 		/*# sourceURL=wp-block-library-inline-css */
 	</style>
@@ -6892,6 +6917,27 @@ header.et-l--header .et_pb_menu__logo > img {
 
 <body data-rsssl=1
 	class="wp-singular page-template page-template-page-template-blank page-template-page-template-blank-php page page-id-25095827 wp-theme-Divi dipi-custom-archive-page dipi-archive- dipi-fix-search-icon dipi-anim-preload et_pb_button_helper_class et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_smooth_scroll et_no_sidebar et_divi_theme et-db">
+
+	<div class="lang-dropdown">
+		<div class="selected" onclick="toggleLang(event)">
+			<img id="current-flag"
+			src="https://drive.google.com/thumbnail?id=1NVzlJiSkKHneCd27ZhSk7pBDz7BjjEsS&sz=w2000"
+			width="30">
+		</div>
+
+		<div class="options" id="lang-options">
+			<img src="https://drive.google.com/thumbnail?id=1NVzlJiSkKHneCd27ZhSk7pBDz7BjjEsS&sz=w2000"
+			width="30"
+				data-lang="id"
+				onclick="changeLang(event)">
+
+			<img src="https://drive.google.com/thumbnail?id=1e_I8r4z-tMcBen0MwYQF62Z16MVvaYhF&sz=w2000"
+			width="30"
+				data-lang="en"
+				onclick="changeLang(event)">
+		</div>
+	</div>
+
 	<div id="page-container">
 		<div id="main-content">
 			<article id="post-25095827" class="post-25095827 page type-page status-publish hentry">
@@ -6904,8 +6950,8 @@ header.et-l--header .et_pb_menu__logo > img {
 									<div class="et_pb_column et_pb_column_4_4 et_pb_column_0  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_with_border et_pb_module et_pb_text et_pb_text_0 et_animated  et_pb_text_align_center et_pb_bg_layout_dark">
 											<div class="et_pb_text_inner">
-												<h5>Dear</h5>
-												<h2>You Are Invited!</h2>
+												<h5 data-id="dear">Dear</h5>
+												<h2 data-id="You Are Invited">You Are Invited!</h2>
 											</div>
 										</div>
 									</div>
@@ -6989,14 +7035,14 @@ header.et-l--header .et_pb_menu__logo > img {
 										</div>
 										<div class="et_pb_module et_pb_text et_pb_text_1 et_animated  et_pb_text_align_center et_pb_bg_layout_dark">
 											<div class="et_pb_text_inner">
-												<p><span>The Wedding of</span></p>
+												<p data-id="theWeddingOf"><span>The Wedding of</span></p>
 												<h1>Peni &amp; Dio</h1>
 											</div>
 										</div>
 										<div
 											class="et_pb_button_module_wrapper et_pb_button_0_wrapper et_pb_button_alignment_center et_pb_module ">
 											<a class="et_pb_button et_pb_button_0 dl-border-pulse et_pb_bg_layout_light"
-												href="#" data-icon="">Open Invitation</a>
+												href="#" data-icon="" data-id="openInvitation">Open Invitation</a>
 										</div>
 									</div>
 								</div>
@@ -7016,7 +7062,7 @@ header.et-l--header .et_pb_menu__logo > img {
 										</div>
 										<div class="et_pb_module et_pb_text et_pb_text_2  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>Scroll Kebawah</p>
+												<p data-id="scrollKebawah">Scroll Down</p>
 											</div>
 										</div>
 									</div>
@@ -7025,7 +7071,7 @@ header.et-l--header .et_pb_menu__logo > img {
 									<div class="et_pb_column et_pb_column_4_4 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module et_pb_text et_pb_text_3  et_pb_text_align_right et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>The Wedding of Peni &amp; Dio</p>
+												<p data-id="theWeddingOf2">The Wedding of Peni &amp; Dio</p>
 											</div>
 										</div>
 									</div>
@@ -7036,7 +7082,7 @@ header.et-l--header .et_pb_menu__logo > img {
 									<div class="et_pb_column et_pb_column_4_4 et_pb_column_4  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module et_pb_text et_pb_text_4 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>The Wedding of</p>
+												<p data-id="theWeddingOf">The Wedding of</p>
 											</div>
 										</div>
 										<div class="et_pb_module et_pb_text et_pb_text_5 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
@@ -7121,11 +7167,9 @@ header.et-l--header .et_pb_menu__logo > img {
 										</div>
 										<div class="et_pb_module et_pb_text et_pb_text_7 et_animated  et_pb_text_align_center et_pb_bg_layout_dark">
 											<div class="et_pb_text_inner">
-												<p>“Dan di antara tanda-tanda kekuasaan Allah ialah diciptakan-Nya
-													untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa
-													tentram di samping-Nya dan dijadikan-Nya rasa kasih sayang di antara
-													kamu. Sesungguhnya yang demikian itu menjadi bukti kekuasaan Allah
-													bagi kaum yang berfikir.“</p>
+												<p data-id="quotes">
+													“Dan di antara tanda-tanda kekuasaan Allah ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tentram di samping-Nya dan dijadikan-Nya rasa kasih sayang di antara kamu. Sesungguhnya yang demikian itu menjadi bukti kekuasaan Allah bagi kaum yang berfikir.“
+												</p>
 												<p><strong>(QS. Ar- Rum 21)</strong></p>
 											</div>
 										</div>
@@ -7141,7 +7185,7 @@ header.et-l--header .et_pb_menu__logo > img {
 										<div class="et_pb_module et_pb_text et_pb_text_8 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
 												<p>
-													<span>“Happy marriages begin when we marry the ones we love, and they blossom when we love the ones we marry.”</span>
+													<span data-id="quotes2">“Happy marriages begin when we marry the ones we love, and they blossom when we love the ones we marry.”</span>
 												</p>
 											</div>
 										</div>
@@ -7172,7 +7216,7 @@ header.et-l--header .et_pb_menu__logo > img {
 												<div class="et_pb_blurb_container">
 													<h4 class="et_pb_module_header"><span>Peni Rizki</span></h4>
 													<div class="et_pb_blurb_description">
-														<p>Putri dari<br />Bapak Rohimat<br />&amp; Ibu Eti Kartika</p>
+														<p data-id="familyBride">Putri dari<br />Bapak Rohimat<br />&amp; Ibu Eti Kartika</p>
 													</div>
 												</div>
 											</div>
@@ -7212,7 +7256,7 @@ header.et-l--header .et_pb_menu__logo > img {
 												<div class="et_pb_blurb_container">
 													<h4 class="et_pb_module_header"><span>Dio Meiwandany</span></h4>
 													<div class="et_pb_blurb_description">
-														<p>Putra dari<br />Bapak Denny Wulandi<br />&amp; Ibu Anne Nurdiah</p>
+														<p data-id="familyGroom">Putra dari<br />Bapak Denny Wulandi<br />&amp; Ibu Anne Nurdiah</p>
 													</div>
 												</div>
 											</div>
@@ -7337,14 +7381,14 @@ header.et-l--header .et_pb_menu__logo > img {
 													<h2 class="dipi-dh-main">
 														<span class="dipi-dh-first-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="akad">
 																	Akad
 																</span>
 															</span>
 														</span>
 														<span class="dipi-dh-second-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="nikah">
 																	Nikah
 																</span>
 															</span>
@@ -7355,8 +7399,8 @@ header.et-l--header .et_pb_menu__logo > img {
 										</div>
 										<div class="et_pb_module et_pb_text et_pb_text_12 et_animated  et_pb_text_align_center et_pb_bg_layout_dark">
 											<div class="et_pb_text_inner">
-												<h4>Minggu, 19 April 2026</h4>
-												<p>08:00 - 10:00 WIB</p>
+												<h4 data-id="tanggal">Minggu, 19 April 2026</h4>
+												<p data-id="jamAkad">08:00 - 10:00 WIB</p>
 												<!-- <h3><span>Grand Pasundan Convention Hotel (Malibu Dome)</span></h3>
 												<p><span>Jl. Peta No.147 - 149, Suka Asih, Kec. Bojongloa Kaler, Kota Bandung, Jawa Barat 40232</span></p> -->
 											</div>
@@ -7444,14 +7488,14 @@ header.et-l--header .et_pb_menu__logo > img {
 													<h2 class="dipi-dh-main">
 														<span class="dipi-dh-first-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="resepsiPernikahan">
 																	Resepsi
 																</span>
 															</span>
 														</span>
 														<span class="dipi-dh-second-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="resepsiPernikahan2">
 																	Pernikahan
 																</span>
 															</span>
@@ -7462,15 +7506,15 @@ header.et-l--header .et_pb_menu__logo > img {
 										</div>
 										<div class="et_pb_module et_pb_text et_pb_text_13 et_animated  et_pb_text_align_center et_pb_bg_layout_dark">
 											<div class="et_pb_text_inner">
-												<h4>Minggu, 19 April 2026</h4>
-												<p>11:00 - 14:00 WIB</p>
+												<h4 data-id="tanggal">Minggu, 19 April 2026</h4>
+												<p data-id="jamResepsi">11:00 - 14:00 WIB</p>
 												<h3><span>Grand Pasundan Convention Hotel (Malibu Dome)</span></h3>
-												<h4><i>Undangan berlaku untuk 2 orang</i></h4>
+												<h4 data-id="undanganBerlaku"><i>Undangan berlaku untuk 2 orang</i></h4>
 												<p><span>Jl. Peta No.147 - 149, Suka Asih, Kec. Bojongloa Kaler, Kota Bandung, Jawa Barat 40232</span></p>
 											</div>
 										</div>
 										<div class="et_pb_button_module_wrapper et_pb_button_2_wrapper et_pb_button_alignment_center et_pb_module ">
-											<a class="et_pb_button et_pb_button_2 et_animated et_pb_bg_layout_light" href="https://maps.app.goo.gl/AAsn9EQBaesMLkBG9" target="_blank" data-icon="">Lihat Lokasi</a>
+											<a class="et_pb_button et_pb_button_2 et_animated et_pb_bg_layout_light" href="https://maps.app.goo.gl/AAsn9EQBaesMLkBG9" target="_blank" data-icon="" data-id="lihatLokasi">Lihat Lokasi</a>
 										</div>
 									</div>
 								</div>
@@ -7481,7 +7525,7 @@ header.et-l--header .et_pb_menu__logo > img {
 									<div class="et_pb_column et_pb_column_4_4 et_pb_column_16  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module et_pb_text et_pb_text_14 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>Save The Date</p>
+												<p data-id="saveTheDate">Save The Date</p>
 											</div>
 										</div>
 										<div class="et_pb_module dipi_countdown dipi_countdown_0 et_animated">
@@ -7492,7 +7536,7 @@ header.et-l--header .et_pb_menu__logo > img {
 										</div>
 									</div>
 									<div class="et_pb_button_module_wrapper et_pb_button_1_wrapper et_pb_button_alignment_center et_pb_module ">
-										<a class="et_pb_button et_pb_button_1 et_animated et_pb_bg_layout_light" href="https://www.google.com/calendar/render?action=TEMPLATE&amp;text=Peni+%26+Dio&amp;dates=20260419T110000/20260419T140000&amp;details=Hi%2C+You%27re+invited+to+our+wedding+ceremony+%7C+Peni+%26+Dio+Wedding&amp;location=Grand+Pasundan+Convention+Hotel+(Malibu+Dome)" target="_blank" data-icon="" style="margin-top: 12px;">Tambah ke Kalender</a>
+										<a class="et_pb_button et_pb_button_1 et_animated et_pb_bg_layout_light" href="https://www.google.com/calendar/render?action=TEMPLATE&amp;text=Peni+%26+Dio&amp;dates=20260419T110000/20260419T140000&amp;details=Hi%2C+You%27re+invited+to+our+wedding+ceremony+%7C+Peni+%26+Dio+Wedding&amp;location=Grand+Pasundan+Convention+Hotel+(Malibu+Dome)" target="_blank" data-icon="" style="margin-top: 12px;" data-id="tambahKeKalender">Tambah ke Kalender</a>
 									</div>
 								</div>
 								<div class="et_pb_section et_pb_section_3 et_pb_with_background et_section_regular">
@@ -7504,14 +7548,14 @@ header.et-l--header .et_pb_menu__logo > img {
 													<h2 class="dipi-dh-main">
 														<span class="dipi-dh-first-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="ourStory">
 																	Our
 																</span>
 															</span>
 														</span>
 														<span class="dipi-dh-second-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="ourStory2">
 																	Story
 																</span>
 															</span>
@@ -7534,53 +7578,24 @@ header.et-l--header .et_pb_menu__logo > img {
 							</div>
 
 							</div>
-							<div
-								class="et_pb_section et_pb_section_8 et_animated et_pb_with_background et_section_regular">
-
-
-
-
-
-
-
-
-
-							</div>
+							<div class="et_pb_section et_pb_section_8 et_animated et_pb_with_background et_section_regular"></div>
 							<div class="et_pb_section et_pb_section_9 et_pb_with_background et_section_regular">
-
-
-
-
-
-
 								<div class="et_pb_row et_pb_row_17">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_17  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_17  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module dipi_dual_heading dipi_dual_heading_2 et_animated">
-
-
-
-
-
-
 											<div class="et_pb_module_inner">
-
 												<div class="dipi-dual-heading ">
 													<h2 class="dipi-dh-main">
 														<span class="dipi-dh-first-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="konfirmasiKehadiran">
 																	Konfirmasi
 																</span>
 															</span>
 														</span>
 														<span class="dipi-dh-second-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="konfirmasiKehadiran2">
 																	Kehadiran
 																</span>
 															</span>
@@ -7589,24 +7604,12 @@ header.et-l--header .et_pb_menu__logo > img {
 												</div>
 											</div>
 										</div>
-										<div
-											class="et_pb_module et_pb_text et_pb_text_15 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-
-
+										<div class="et_pb_module et_pb_text et_pb_text_15 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>Kami tidak sabar menunggu hari pernikahan kami bersama
-													Bapak/Ibu/Saudara/i, mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i.
-													Terima kasih.</p>
+												<p data-id="konfirmasiKehadiranMessage">Kami tidak sabar menunggu hari pernikahan kami bersama Bapak/Ibu/Saudara/i, mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i. Terima kasih.</p>
 											</div>
 										</div>
-										<div
-											class="et_pb_module et_pb_code et_pb_code_1 style et_animated  et_pb_text_align_left">
-
-
-
-
+										<div class="et_pb_module et_pb_code et_pb_code_1 style et_animated  et_pb_text_align_left">
 											<div class="et_pb_code_inner">
 												<div class='fluentform ff-default fluentform_wrapper_8 ffs_custom_wrap'>
 													<form data-form_id="8" id="fluentform_8"
@@ -7629,7 +7632,7 @@ header.et-l--header .et_pb_menu__logo > img {
 																	class="ff-el-input--label ff-el-is-required asterisk-right">
 																	<label for='ff_8_input_text'
 																		id='label_ff_8_input_text'
-																		aria-label="Nama">Nama</label>
+																		aria-label="Nama" data-id="rsvpNama">Nama</label>
 																</div>
 																<div class='ff-el-input--content'><input type="text"
 																		name="input_text" value="Nama Tamu"
@@ -7640,7 +7643,7 @@ header.et-l--header .et_pb_menu__logo > img {
 															<div class='ff-el-group  ff_list_buttons'>
 																<div
 																	class="ff-el-input--label ff-el-is-required asterisk-right">
-																	<label aria-label="Kehadiran?">Kehadiran?</label>
+																	<label aria-label="Kehadiran?" data-id="rsvpKehadiran">Kehadiran?</label>
 																</div>
 																<div class='ff-el-input--content'>
 																	<div
@@ -7654,7 +7657,7 @@ header.et-l--header .et_pb_menu__logo > img {
 																				id='input_radio_b170d854d3dfba7daf9b70e8673bf103'
 																				aria-label='Saya akan hadir'
 																				aria-invalid='false' aria-required=true>
-																			<span>Saya akan hadir</span></label>
+																			<span data-id="hadir">Saya akan hadir</span></label>
 																	</div>
 																	<div class='ff-el-form-check ff-el-form-check-'>
 																		<label class='ff-el-form-check-label'
@@ -7666,7 +7669,7 @@ header.et-l--header .et_pb_menu__logo > img {
 																				id='input_radio_ce0e3f3ae6b0e502dc839c5bd90410a2'
 																				aria-label='Maaf tidak bisa'
 																				aria-invalid='false' aria-required=true>
-																			<span>Maaf tidak bisa</span></label>
+																			<span data-id="tidakBisa">Maaf tidak bisa</span></label>
 																	</div>
 																</div>
 															</div>
@@ -7675,7 +7678,7 @@ header.et-l--header .et_pb_menu__logo > img {
 																	class="ff-el-input--label ff-el-is-required asterisk-right">
 																	<label for='ff_8_numeric-field'
 																		id='label_ff_8_numeric-field'
-																		aria-label="Jumlah Tamu">Jumlah Tamu</label>
+																		aria-label="Jumlah Tamu" data-id="jumlahTamu">Jumlah Tamu</label>
 																</div>
 																<div class='ff-el-input--content'>
 																	<select id="jumalahTamu" class="ff-el-form-control center" data-name="numeric-field"  inputmode="numeric" step="any" aria-invalid="false" aria-required=true>
@@ -7688,7 +7691,7 @@ header.et-l--header .et_pb_menu__logo > img {
 																class='ff-el-group ff-text-center ff_submit_btn_wrapper'>
 																<button type="submit"
 																	class="ff-btn ff-btn-submit ff-btn-md ff_btn_style"
-																	aria-label="Kirim">Kirim</button>
+																	aria-label="Kirim" data-id="kirim">Kirim</button>
 															</div>
 														</fieldset>
 													</form>
@@ -7756,56 +7759,32 @@ header.et-l--header .et_pb_menu__logo > img {
 
 							</div>
 							<div class="et_pb_section et_pb_section_10 et_pb_with_background et_section_regular">
-
-
-
-
-
-
 								<div class="et_pb_row et_pb_row_18">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_18  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
-										<div
-											class="et_pb_module et_pb_blurb et_pb_blurb_3  et_pb_text_align_left  et_pb_blurb_position_top et_pb_bg_layout_light">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_18  et_pb_css_mix_blend_mode_passthrough et-last-child">
+										<div class="et_pb_module et_pb_blurb et_pb_blurb_3  et_pb_text_align_left  et_pb_blurb_position_top et_pb_bg_layout_light">
 											<div class="et_pb_blurb_content">
-												<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap"><span
-															class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone et-pb-icon"></span></span>
+												<div class="et_pb_main_blurb_image">
+													<span class="et_pb_image_wrap">
+														<span class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone et-pb-icon"></span>
+													</span>
 												</div>
-												<div class="et_pb_blurb_container">
-
-
-												</div>
+												<div class="et_pb_blurb_container"></div>
 											</div>
 										</div>
 										<div class="et_pb_module dipi_dual_heading dipi_dual_heading_3 et_animated">
-
-
-
-
-
-
 											<div class="et_pb_module_inner">
-
 												<div class="dipi-dual-heading ">
 													<h2 class="dipi-dh-main">
 														<span class="dipi-dh-first-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="weddingGift">
 																	Amplop
 																</span>
 															</span>
 														</span>
 														<span class="dipi-dh-second-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="weddingGift2">
 																	Digital
 																</span>
 															</span>
@@ -7814,137 +7793,58 @@ header.et-l--header .et_pb_menu__logo > img {
 												</div>
 											</div>
 										</div>
-										<div
-											class="et_pb_module et_pb_text et_pb_text_16 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-
-
+										<div class="et_pb_module et_pb_text et_pb_text_16 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>Bagi keluarga dan sahabat yang ingin mengirimkan hadiah, silakan
-													mengirimkannya melalui tautan berikut:</p>
+												<p data-id="weddingGiftMessage">Bagi keluarga dan sahabat yang ingin mengirimkan hadiah, silakan mengirimkannya melalui tautan berikut:</p>
 											</div>
 										</div>
 									</div>
-
-
-
-
 								</div>
 								<div class="et_pb_row et_pb_row_19 two-columns">
-									<div
-										class="et_pb_column et_pb_column_1_2 et_pb_column_19  et_pb_css_mix_blend_mode_passthrough">
-
-
-
-
-										<div
-											class="et_pb_button_module_wrapper et_pb_button_3_wrapper et_pb_button_alignment_center et_pb_module ">
-											<a class="et_pb_button et_pb_button_3 et_animated et_pb_bg_layout_light"
-												href="#hadiah" data-icon="">Kirim Hadiah</a>
+									<div class="et_pb_column et_pb_column_1_2 et_pb_column_19  et_pb_css_mix_blend_mode_passthrough">
+										<div class="et_pb_button_module_wrapper et_pb_button_3_wrapper et_pb_button_alignment_center et_pb_module ">
+											<a class="et_pb_button et_pb_button_3 et_animated et_pb_bg_layout_light" href="#hadiah" data-icon="" data-id="kirimHadiah">Kirim Hadiah</a>
 										</div>
 									</div>
-									<div
-										class="et_pb_column et_pb_column_1_2 et_pb_column_20  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
-										<div
-											class="et_pb_button_module_wrapper et_pb_button_4_wrapper et_pb_button_alignment_center et_pb_module ">
-											<a class="et_pb_button et_pb_button_4 et_animated et_pb_bg_layout_light"
-												href="#dana" data-icon="">Transfer Bank</a>
+									<div class="et_pb_column et_pb_column_1_2 et_pb_column_20  et_pb_css_mix_blend_mode_passthrough et-last-child">
+										<div class="et_pb_button_module_wrapper et_pb_button_4_wrapper et_pb_button_alignment_center et_pb_module ">
+											<a class="et_pb_button et_pb_button_4 et_animated et_pb_bg_layout_light" href="#dana" data-icon="" data-id="transferBank">Transfer Bank</a>
 										</div>
 									</div>
-
-
-
-
 								</div>
 
 
 							</div>
 							<div id="dana"
 								class="et_pb_section et_pb_section_11 popup et_pb_with_background et_section_regular">
-
-
-
-
-
-
 								<div class="et_pb_row et_pb_row_20">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_21  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
-										<div
-											class="et_pb_module et_pb_text et_pb_text_17  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_21  et_pb_css_mix_blend_mode_passthrough et-last-child">
+										<div class="et_pb_module et_pb_text et_pb_text_17  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>Nomor Rekening</p>
+												<p data-id="nomorRekening">Nomor Rekening</p>
 											</div>
 										</div>
 									</div>
-
-
-
-
 								</div>
 								<div class="et_pb_with_border et_pb_row et_pb_row_21">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_22  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_22  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module et_pb_image et_pb_image_2">
-
-
-
-
-											<span class="et_pb_image_wrap "><img decoding="async" width="320"
-													height="100"
-													src="https://hi.ngantenstory.com/wp-content/uploads/2023/02/Bank-BCA-1-300x94-1.png"
-													alt="" title="Bank-BCA"
-													srcset="https://hi.ngantenstory.com/wp-content/uploads/2023/02/Bank-BCA-1-300x94-1.png 320w, https://hi.ngantenstory.com/wp-content/uploads/2023/02/Bank-BCA-1-300x94-1-300x94.png 300w"
-													sizes="(max-width: 320px) 100vw, 320px"
-													class="wp-image-20204235" /></span>
+											<span class="et_pb_image_wrap "><img decoding="async" width="320" height="100" src="https://hi.ngantenstory.com/wp-content/uploads/2023/02/Bank-BCA-1-300x94-1.png" alt="" title="Bank-BCA" srcset="https://hi.ngantenstory.com/wp-content/uploads/2023/02/Bank-BCA-1-300x94-1.png 320w, https://hi.ngantenstory.com/wp-content/uploads/2023/02/Bank-BCA-1-300x94-1-300x94.png 300w" sizes="(max-width: 320px) 100vw, 320px" class="wp-image-20204235" /></span>
 										</div>
-										<div
-											class="et_pb_module et_pb_text et_pb_text_18 copy  et_pb_text_align_left et_pb_bg_layout_light">
-
-
-
-
+										<div class="et_pb_module et_pb_text et_pb_text_18 copy  et_pb_text_align_left et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
 												<p>1390163394</p>
 											</div>
 										</div>
-										<div
-											class="et_pb_button_module_wrapper et_pb_button_5_wrapper et_pb_button_alignment_right et_pb_module ">
-											<a class="et_pb_button et_pb_button_5 copy-btn et_pb_bg_layout_light"
-												href="#" data-icon="">Copy</a>
+										<div class="et_pb_button_module_wrapper et_pb_button_5_wrapper et_pb_button_alignment_right et_pb_module ">
+											<a class="et_pb_button et_pb_button_5 copy-btn et_pb_bg_layout_light" href="#" data-icon="" data-id="copy">Copy</a>
 										</div>
-										<div
-											class="et_pb_module et_pb_text et_pb_text_19  et_pb_text_align_left et_pb_bg_layout_light">
-
-
-
-
+										<div class="et_pb_module et_pb_text et_pb_text_19  et_pb_text_align_left et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
 												<h5>Peni Rizki</h5>
 											</div>
 										</div>
 									</div>
-
-
-
-
 								</div>
 								<!-- <div class="et_pb_with_border et_pb_row et_pb_row_22">
 									<div
@@ -8001,114 +7901,52 @@ header.et-l--header .et_pb_menu__logo > img {
 
 							</div>
 							<div id="hadiah" class="et_pb_section et_pb_section_12 popup et_section_regular">
-
-
-
-
-
-
 								<div class="et_pb_row et_pb_row_23">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_24  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
-										<div
-											class="et_pb_module et_pb_text et_pb_text_22  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_24  et_pb_css_mix_blend_mode_passthrough et-last-child">
+										<div class="et_pb_module et_pb_text et_pb_text_22  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
-												<p>Alamat Penerima</p>
+												<p data-id="alamat">Alamat Penerima</p>
 											</div>
 										</div>
 									</div>
-
-
-
-
 								</div>
 								<div class="et_pb_with_border et_pb_row et_pb_row_24">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_25  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
-										<div
-											class="et_pb_module et_pb_text et_pb_text_23  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_25  et_pb_css_mix_blend_mode_passthrough et-last-child">
+										<div class="et_pb_module et_pb_text et_pb_text_23  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">Peni Rizki<br /> 085721996677</div>
 										</div>
-										<div
-											class="et_pb_module et_pb_divider et_pb_divider_1 et_pb_divider_position_center et_pb_space">
+										<div class="et_pb_module et_pb_divider et_pb_divider_1 et_pb_divider_position_center et_pb_space">
 											<div class="et_pb_divider_internal"></div>
 										</div>
-										<div
-											class="et_pb_module et_pb_text et_pb_text_24 copy  et_pb_text_align_center et_pb_bg_layout_light">
-
-
-
-
+										<div class="et_pb_module et_pb_text et_pb_text_24 copy  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
 												<!-- Jalan Margamulya no. 96, Kel. Cimahi, Kec. Cimahi Tengah, Kota Cimahi, 40525 -->
 												<p>Jl. Margamulya No.96,<br />Kel. Cimahi, Kec. Cimahi Tengah, <br />Kota Cimahi 40525</p>
 											</div>
 										</div>
-										<div
-											class="et_pb_button_module_wrapper et_pb_button_7_wrapper et_pb_button_alignment_center et_pb_module ">
-											<a class="et_pb_button et_pb_button_7 copy-btn et_pb_bg_layout_light"
-												href="#" data-icon="">Copy Address</a>
+										<div class="et_pb_button_module_wrapper et_pb_button_7_wrapper et_pb_button_alignment_center et_pb_module ">
+											<a class="et_pb_button et_pb_button_7 copy-btn et_pb_bg_layout_light" href="#" data-icon="" data-id="copyAddress">Copy Address</a>
 										</div>
 									</div>
-
-
-
-
 								</div>
-
-
 							</div>
 							<div class="et_pb_section et_pb_section_13 et_section_regular">
-
-
-
-
-
-
 								<div class="et_pb_row et_pb_row_25">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_26  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_26  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module dipi_dual_heading dipi_dual_heading_4 et_animated">
-
-
-
-
-
-
 											<div class="et_pb_module_inner">
-
 												<div class="dipi-dual-heading ">
 													<h2 class="dipi-dh-main">
 														<span class="dipi-dh-first-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="happyMoments">
 																	Happy
 																</span>
 															</span>
 														</span>
 														<span class="dipi-dh-second-heading">
 															<span class="dipi-dh-animation-container">
-																<span class="dipi-dh-bg-container">
+																<span class="dipi-dh-bg-container" data-id="happyMoments2">
 																	Moments
 																</span>
 															</span>
@@ -8123,35 +7961,14 @@ header.et-l--header .et_pb_menu__logo > img {
 											</div>
 										</div> -->
 									</div>
-
-
-
-
 								</div>
-
-
 							</div>
 							<div class="et_pb_section et_pb_section_14 et_section_regular">
-
-
-
-
-
-
 								<div class="et_pb_row et_pb_row_26">
-									<div
-										class="et_pb_column et_pb_column_4_4 et_pb_column_27  et_pb_css_mix_blend_mode_passthrough et-last-child">
-
-
-
-
+									<div class="et_pb_column et_pb_column_4_4 et_pb_column_27  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module et_pb_code et_pb_code_2">
-
-
-
-
 											<div class="et_pb_code_inner">
-												<div class="wonderpluginaudio" id="wonderpluginaudio-11"
+												<div class="wonderpluginaudio"  id="wonderpluginaudio-11"
 													data-audioplayerid="11" data-width="48" data-height="600"
 													data-skin="button48" data-progressinbar="true" data-showinfo="false"
 													data-showimage="false" data-autoplay="false" data-random="false"
@@ -8422,7 +8239,7 @@ header.et-l--header .et_pb_menu__logo > img {
 										<div class="et_pb_module et_pb_text et_pb_text_25 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
 											<div class="et_pb_text_inner">
 												<p>
-													<span>Tinggalkan pesan/doa untuk kami </span>
+													<span data-id="wish">Tinggalkan pesan/doa untuk kami </span>
 													<img loading="lazy" decoding="async" src="https://hi.ngantenstory.com/wp-content/uploads/2023/02/Comment-Envelope.svg" width="32" height="29" alt="" class="wp-image-377673 alignnone size-medium" />
 												</p>
 											</div>
@@ -8430,7 +8247,7 @@ header.et-l--header .et_pb_menu__logo > img {
 										<div class="et_pb_module et_pb_code et_pb_code_3 lang-en  et_pb_text_align_left">
 											<!-- <div class='ff-el-group hidden'>
 												<div class="ff-el-input--label ff-el-is-required asterisk-right">
-													<label for='ff_8_input_text' id='label_ff_8_input_text' aria-label="Nama">Nama</label>
+													<label for='ff_8_input_text' id='label_ff_8_input_text' aria-label="Nama" data-id="rsvpNama">Nama</label>
 												</div>
 												<div class='ff-el-input--content'>
 													<input type="text" name="input_text" value="Nama Tamu" class="ff-el-form-control" data-name="input_text" id="ff_8_input_text" aria-invalid="false" aria-required=true  style="width: 100%;">
@@ -8438,7 +8255,7 @@ header.et-l--header .et_pb_menu__logo > img {
 											</div>
 											<div class='ff-el-group hidden'>
 												<div class="ff-el-input--label ff-el-is-required asterisk-right">
-													<label for='ff_8_input_text' id='label_ff_8_input_text' aria-label="Nama">Ucapan & Doa</label>
+													<label for='ff_8_input_text' id='label_ff_8_input_text' aria-label="Nama" data-id="rsvpUcapan">Ucapan & Doa</label>
 												</div>
 												<div class='ff-el-input--content'>
 													<input type="text" name="input_text" value="" class="ff-el-form-control" data-name="input_text" id="ff_8_input_text" aria-invalid="false" aria-required=true  style="width: 100%;">
@@ -8609,7 +8426,7 @@ header.et-l--header .et_pb_menu__logo > img {
 
 
 											<div class="et_pb_text_inner">
-												<p>Two souls become one, two hearts beat as one</p>
+												<p data-id="quotes3">Two souls become one, two hearts beat as one</p>
 											</div>
 										</div>
 										<div
@@ -12826,5 +12643,6 @@ header.et-l--header .et_pb_menu__logo > img {
 		integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
 		data-cf-beacon='{"version":"2024.11.0","token":"046e31d68c194032a95d1ca5d3768f3b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
 		crossorigin="anonymous"></script>
+	<script src="asset/js/lang.js"></script>
 </body>
 </html>
