@@ -7199,6 +7199,32 @@ header.et-l--header .et_pb_menu__logo > img {
 								</div>
 							</div>
 							<div class="et_pb_section et_pb_section_6 et_section_regular">
+								<style>
+									/* Paksa row jadi flex & center semua isi */
+.et_pb_section_6 .et_pb_row {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* Column ikut center */
+.et_pb_section_6 .et_pb_column {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center !important;
+}
+
+/* Gambar center */
+.et_pb_section_6 .et_pb_image_wrap {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* Fix img */
+.et_pb_section_6 .et_pb_image_wrap img {
+    display: block;
+    margin: 0 auto;
+}
+								</style>
 								<div class="et_pb_row et_pb_row_9">
 									<div class="et_pb_column et_pb_column_4_4 et_pb_column_9  et_pb_css_mix_blend_mode_passthrough et-last-child">
 										<div class="et_pb_module et_pb_image et_pb_image_0 et_animated et-waypoint">
